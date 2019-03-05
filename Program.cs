@@ -8,22 +8,29 @@ namespace Simple_Calculator
         {
             Console.Title = "Simple Calculator";
             
-            char opperand;
-            double v1, v2, result;
+            
 
             Console.WriteLine("This is a simple calculator coded in c# ~ brian");
+            
+            show();
 
-        calc:
+        }
+
+        void show() {
+
+            char operand;
+            double v1, v2, result;
+
             Console.WriteLine("First number:");
-            v1 = Convert.ToInt32(Console.ReadLine());
+            Double.TryParse(Console.ReadLine(), out v1);
 
             Console.WriteLine("Second number:");
-            v2 = Convert.ToInt32(Console.ReadLine());
+            Double.TryParse(Console.ReadLine(), out v2);
 
-            Console.WriteLine("Enter an operrand: (+, -, *, /, ^)");
-            opperand = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine("Enter an operand: (+, -, *, /, ^)");
+            Char.TryParse(Console.ReadLine(), out operand);
 
-            switch (opperand)
+            switch (operand)
             {
                 case '+':
                     result = v1 + v2;
@@ -50,17 +57,10 @@ namespace Simple_Calculator
                     Console.WriteLine("Answer: " + result);
                     break;
             }
-
-            string again;
             Console.WriteLine("Would you like to calculate another problem? (Y | N)");
-            again = Console.ReadLine();
-            
-            if(again.Contains("Y".ToLower()))
-            {
-                goto calc;
-            } else {
-                Environment.Exit(0);
-            }
+
+            Console.ReadLine().Contains("Y") ? show() : Environment.Exit(0);
+
         }
     }
 }
